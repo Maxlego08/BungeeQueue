@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 
 import fr.maxlego08.bungeequeue.utils.storage.Persist;
 import fr.maxlego08.bungeequeue.utils.storage.Saveable;
+import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
 
 public class ZPlugin extends Plugin implements fr.maxlego08.bungeequeue.utils.Plugin {
@@ -37,6 +38,8 @@ public class ZPlugin extends Plugin implements fr.maxlego08.bungeequeue.utils.Pl
 
 	protected void postEnable() {
 
+		saveables.forEach(save -> save.load(persist));
+
 		logger.log("=== ENABLE DONE <&>7(<&>6" + Math.abs(enableTime - System.currentTimeMillis()) + "ms<&>7) <&>e===");
 
 	}
@@ -49,6 +52,8 @@ public class ZPlugin extends Plugin implements fr.maxlego08.bungeequeue.utils.Pl
 	}
 
 	protected void postDisable() {
+
+		saveables.forEach(save -> save.save(persist));
 
 		logger.log(
 				"=== DISABLE DONE <&>7(<&>6" + Math.abs(enableTime - System.currentTimeMillis()) + "ms<&>7) <&>e===");
@@ -75,6 +80,14 @@ public class ZPlugin extends Plugin implements fr.maxlego08.bungeequeue.utils.Pl
 		saveables.add(saveable);
 	}
 
+	/**
+	 * 
+	 * @param command
+	 */
+	public void addCommand(Command command) {
+		getProxy().getPluginManager().registerCommand(this, command);
+	}
+	
 	public GsonBuilder getGsonBuilder() {
 		return new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().serializeNulls()
 				.excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.VOLATILE);
