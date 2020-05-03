@@ -90,9 +90,10 @@ public class QueueManager {
 
 				} else {
 
+					
 					// Si le serveur est en maintenance
 					String motd = TextComponent.toLegacyText(server.getDescriptionComponent());
-					if (motd.contains("maintenance")) {
+					if (motd.contains("maintenance") || motd.contains(Config.defaultMotd)) {
 						title("§6Liste d'attente", "§eLe serveur est actuellement en maintenance.", 0,
 								5 + 20 * queueSpeed, 0);
 						return;

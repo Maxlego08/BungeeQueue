@@ -7,14 +7,20 @@ import org.bukkit.event.server.ServerListPingEvent;
 
 public class ServerListener implements Listener {
 
+	private boolean isEnable = false;
+	
 	@EventHandler
 	public void onPing(ServerListPingEvent event) {
 
-		if (Bukkit.getServer().hasWhitelist())
+		if (Bukkit.getServer().hasWhitelist() || !isEnable)
 			event.setMotd("maintenance");
 		else
 			event.setMotd("ouvert");
 
 	}
 
+	public void setEnable(boolean isEnable) {
+		this.isEnable = isEnable;
+	}
+	
 }
