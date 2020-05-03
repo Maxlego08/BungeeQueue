@@ -5,6 +5,7 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.google.gson.Gson;
@@ -31,7 +32,7 @@ public class ZPlugin extends JavaPlugin implements Plugin {
 		if (!getDataFolder().exists()) {
 			getDataFolder().mkdir();
 		}
-		
+
 		persist = new Persist(this);
 
 		logger.log("=== ENABLE START ===");
@@ -53,10 +54,11 @@ public class ZPlugin extends JavaPlugin implements Plugin {
 
 	protected void postDisable() {
 
-		logger.log("=== DISABLE DONE <&>7(<&>6" + Math.abs(enableTime - System.currentTimeMillis()) + "ms<&>7) <&>e===");
+		logger.log(
+				"=== DISABLE DONE <&>7(<&>6" + Math.abs(enableTime - System.currentTimeMillis()) + "ms<&>7) <&>e===");
 
 	}
-	
+
 	@Override
 	public Gson getGson() {
 		return gson;
@@ -77,11 +79,19 @@ public class ZPlugin extends JavaPlugin implements Plugin {
 		saveables.add(saveable);
 	}
 
+	/**
+	 * 
+	 * @param listener
+	 */
+	protected void addListener(Listener listener) {
+		getServer().getPluginManager().registerEvents(listener, this);
+	}
+
 	public GsonBuilder getGsonBuilder() {
 		return new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().serializeNulls()
 				.excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.VOLATILE);
 	}
-	
+
 	public Persist getPersist() {
 		return persist;
 	}

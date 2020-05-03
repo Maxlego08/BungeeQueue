@@ -30,5 +30,9 @@ public class BungeeQueue extends ZPlugin {
 		
 		postDisable();
 	}
+	
+	public QueueManager getManager() {
+		return manager;
+	}
 
 }

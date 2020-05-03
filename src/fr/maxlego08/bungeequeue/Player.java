@@ -22,6 +22,13 @@ public class Player {
 	}
 
 	/**
+	 * @return the isWaiting
+	 */
+	public boolean isWaiting() {
+		return queuePosition > 0;
+	}
+
+	/**
 	 * Permet d'envoyer un message au joueur
 	 * 
 	 * @param message
@@ -80,7 +87,12 @@ public class Player {
 	public UUID getUuid() {
 		return uuid;
 	}
-	
-	
+
+	public void addOne() {
+		if (isWaiting()){
+			queuePosition++;
+			message("§eUn joueur prioritaire vient de vous passer devant.");
+		}
+	}
 
 }

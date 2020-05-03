@@ -32,6 +32,7 @@ public class CommandQueue extends Command {
 			return;
 		}
 		
+		plugin.getManager().joinQueue(player);
 	}
 
 }
