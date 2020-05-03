@@ -164,6 +164,7 @@ public class QueueManager {
 			String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * queueSpeed);
 			player.message("§eVous êtes à la place §6%s §esur §6%s§e, §etemps §ed'attente §eestité §eà §6%s§e.",
 					player.getQueuePosition(), queue.size(), cooldown);
+			return;
 		}
 
 		boolean isAccess = proxiedPlayer.hasPermission("bypass.queue");

@@ -60,6 +60,10 @@ public class ZPlugin extends Plugin implements fr.maxlego08.bungeequeue.utils.Pl
 				"=== DISABLE DONE <&>7(<&>6" + Math.abs(enableTime - System.currentTimeMillis()) + "ms<&>7) <&>e===");
 
 	}
+	
+	public void load(){
+		saveables.forEach(save -> save.load(persist));
+	}
 
 	@Override
 	public Gson getGson() {

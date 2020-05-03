@@ -19,19 +19,26 @@ public class CommandQueue extends Command {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 
-		if (!(sender instanceof ProxiedPlayer)){
+		if (!(sender instanceof ProxiedPlayer)) {
+
+			if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+				plugin.load();
+				sender.sendMessage(new TextComponent("§aReload !"));
+				return;
+			}
+
 			sender.sendMessage(new TextComponent("§cVous ne pouvez pas faire cette commande depuis la console."));
 			return;
 		}
-		
-		ProxiedPlayer player = (ProxiedPlayer)sender;
-		//Verif si le joueur est login ici
 
-		if (!player.getServer().getInfo().getName().equalsIgnoreCase(Config.defaultServer)){
+		ProxiedPlayer player = (ProxiedPlayer) sender;
+		// Verif si le joueur est login ici
+
+		if (!player.getServer().getInfo().getName().equalsIgnoreCase(Config.defaultServer)) {
 			sender.sendMessage(new TextComponent("§cVous ne pouvez pas faire cette commande ici."));
 			return;
 		}
-		
+
 		plugin.getManager().joinQueue(player);
 	}
 
