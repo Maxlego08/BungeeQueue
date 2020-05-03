@@ -9,7 +9,7 @@ public class Config implements Saveable {
 	public static String targetServer = "faction";
 	public static String defaultServer = "lobby";
 	public static int onlineBuffer = 2;
-	protected static CharSequence defaultMotd = "A Minecraft Server";
+	protected static String defaultMotd = "A Minecraft Server";
 	
 	@Override
 	public void save(Persist persist) {
