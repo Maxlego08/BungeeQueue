@@ -89,10 +89,15 @@ public class Player {
 	}
 
 	public void addOne() {
-		if (isWaiting()){
+		if (isWaiting()) {
 			queuePosition++;
 			message("§eUn joueur prioritaire vient de vous passer devant.");
 		}
+	}
+
+	public void removeOne() {
+		if (isWaiting())
+			queuePosition--;
 	}
 
 }

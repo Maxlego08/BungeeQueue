@@ -8,6 +8,7 @@ public class Config implements Saveable {
 	public static String prefix = "§8(§ePrideNetwork§8)";
 	public static String targetServer = "faction";
 	public static String defaultServer = "lobby";
+	public static int onlineBuffer = 2;
 	
 	@Override
 	public void save(Persist persist) {

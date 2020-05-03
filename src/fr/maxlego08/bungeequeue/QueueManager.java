@@ -22,7 +22,7 @@ public class QueueManager {
 	private final Map<UUID, Player> players = new HashMap<>();
 	private final Deque<Player> queue = new LinkedList<>();
 	private boolean isRunning = false;
-	private final int queueSpeed = 2;
+	private final int queueSpeed = 5;
 	private final TimeUnit timeUnit = TimeUnit.SECONDS;
 
 	public QueueManager(BungeeQueue plugin) {
@@ -95,9 +95,27 @@ public class QueueManager {
 					if (motd.contains("maintenance")) {
 						title("§6Liste d'attente", "§eLe serveur est actuellement en maintenance.", 0,
 								5 + 20 * queueSpeed, 0);
+						return;
 					}
-					
-					System.out.println("ping ici");
+
+					int onlinePlayers = server.getPlayers().getOnline();
+					int maxPlayer = server.getPlayers().getMax();
+
+					// S'il y a moins de joueur que de max player, - 2 car il y
+					// a 2
+					// joueurs qui peuvent se connecter en même temps
+					if (onlinePlayers < maxPlayer - Config.onlineBuffer) {
+
+						Player player = queue.pollFirst();
+						player.getPlayer().connect(info);
+						player.setQueuePosition(0);
+						player.title("§f§kII§e Bienvenue §f§kII", "§eBienvenue sur §6PrideNetwork", 10, 30, 10);
+
+						players.values().forEach(Player::removeOne);
+						title("§6Liste d'attente", "§eVous êtes à la position §6%position% §esur §6%s", 0,
+								5 + 20 * queueSpeed, 0, queue.size());
+
+					}
 
 				}
 
@@ -109,7 +127,8 @@ public class QueueManager {
 	private void title(String message, String subMessage, int fadeIn, int stay, int fadeOut, Object... args) {
 		players.values().forEach(player -> {
 			if (player.isWaiting())
-				player.title(message, subMessage, fadeIn, stay, fadeOut, args);
+				player.title(message, subMessage.replace("%position%", String.valueOf(player.getQueuePosition())),
+						fadeIn, stay, fadeOut, args);
 		});
 	}
 
