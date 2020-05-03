@@ -189,4 +189,27 @@ public class QueueManager {
 
 	}
 
+	/**
+	 * 
+	 * @param player
+	 */
+	public void playerDisconnect(ProxiedPlayer proxiedPlayer) {
+
+		UUID uuid = proxiedPlayer.getUniqueId();
+		if (players.containsKey(uuid)) {
+
+			Player player = getPlayer(proxiedPlayer);
+			if (player.isWaiting()) {
+
+				int position = player.getQueuePosition();
+				queue.remove(player);
+
+				queue.forEach(currentPlayer -> currentPlayer.updatePosition(position, queue.size()));
+
+			}
+
+		}
+
+	}
+
 }

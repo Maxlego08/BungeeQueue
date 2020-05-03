@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
 import fr.maxlego08.bungeequeue.utils.storage.Persist;
 import fr.maxlego08.bungeequeue.utils.storage.Saveable;
 import net.md_5.bungee.api.plugin.Command;
+import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 
 public class ZPlugin extends Plugin implements fr.maxlego08.bungeequeue.utils.Plugin {
@@ -88,11 +89,26 @@ public class ZPlugin extends Plugin implements fr.maxlego08.bungeequeue.utils.Pl
 		getProxy().getPluginManager().registerCommand(this, command);
 	}
 	
+	/**
+	 * 
+	 * @param listener
+	 */
+	public void addListener(Listener listener) {
+		this.getProxy().getPluginManager().registerListener(this, listener);
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public GsonBuilder getGsonBuilder() {
 		return new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().serializeNulls()
 				.excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.VOLATILE);
 	}
 
+	/*
+	 * 
+	 */
 	public Persist getPersist() {
 		return persist;
 	}

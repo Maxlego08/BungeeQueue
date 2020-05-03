@@ -1,6 +1,7 @@
 package fr.maxlego08.bungeequeue;
 
 import fr.maxlego08.bungeequeue.command.CommandQueue;
+import fr.maxlego08.bungeequeue.listener.ServerListener;
 import fr.maxlego08.bungeequeue.utils.ZPlugin;
 
 public class BungeeQueue extends ZPlugin {
@@ -17,6 +18,7 @@ public class BungeeQueue extends ZPlugin {
 		
 		addCommand(new CommandQueue(this));
 		addSave(new Config());
+		addListener(new ServerListener(this));
 		
 		postEnable();
 

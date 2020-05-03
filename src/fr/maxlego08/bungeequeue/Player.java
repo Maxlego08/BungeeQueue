@@ -100,4 +100,17 @@ public class Player {
 			queuePosition--;
 	}
 
+	/**
+	 * 
+	 * @param position
+	 */
+	public void updatePosition(int position, int size) {
+		
+		if (queuePosition > position){
+			queuePosition--;
+			action("§eUn joueur vient de déconnecter, vous êtes passez à la position §6%s §esur §6%s§e.", queuePosition, size);
+		}
+		
+	}
+
 }
