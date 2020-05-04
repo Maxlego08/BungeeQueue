@@ -18,13 +18,17 @@ public class ZPlugin extends Plugin implements fr.maxlego08.bungeequeue.utils.Pl
 
 	private Gson gson;
 	private Persist persist;
-	private Logger logger = new Logger(this.getDescription().getName() + "-V" + this.getDescription().getVersion());
+	private Logger logger;
 	private List<Saveable> saveables = new ArrayList<Saveable>();
 	private long enableTime;
 
 	protected void preEnable() {
 		enableTime = System.currentTimeMillis();
-
+		logger = new Logger(this.getDescription().getName() + "-V" + this.getDescription().getVersion());
+		
+		logger.log("=== ENABLE START ===");
+		logger.log("Plugin Version V<&>c" + getDescription().getVersion(), LogType.INFO);
+		
 		gson = getGsonBuilder().create();
 
 		if (!getDataFolder().exists()) {
@@ -32,9 +36,6 @@ public class ZPlugin extends Plugin implements fr.maxlego08.bungeequeue.utils.Pl
 		}
 
 		persist = new Persist(this);
-
-		logger.log("=== ENABLE START ===");
-		logger.log("Plugin Version V<&>c" + getDescription().getVersion(), LogType.INFO);
 	}
 
 	protected void postEnable() {
