@@ -6,10 +6,12 @@ import fr.maxlego08.bungeequeue.utils.storage.Saveable;
 
 public class Config implements Saveable {
 
-	public static String prefix = "§8(§ePrideNetwork§8)";
+	public static int onlineBuffer = 2;
+	public static int queueSpeed = 5;
 	public static String targetServer = "faction";
 	public static String defaultServer = "lobby";
-	public static int onlineBuffer = 2;
+	
+	public static String prefix = "§8(§ePrideNetwork§8)";
 	public static String defaultMotd = "A Minecraft Server";
 	public static String onliPlayerCanUse = "§cVous ne pouvez pas faire cette commande depuis la console.";
 	public static String mustBeLogin = "§cVous ne pouvez pas rejoindre la liste d'attente pour le moment.";

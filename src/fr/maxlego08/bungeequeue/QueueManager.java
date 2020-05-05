@@ -23,7 +23,6 @@ public class QueueManager {
 	private final Map<UUID, Player> players = new HashMap<>();
 	private final Deque<Player> queue = new LinkedList<>();
 	private boolean isRunning = false;
-	private final int queueSpeed = 5;
 	private final TimeUnit timeUnit = TimeUnit.SECONDS;
 
 	public QueueManager(BungeeQueue plugin) {
@@ -62,7 +61,7 @@ public class QueueManager {
 
 			this.connectPlayers();
 
-		}, queueSpeed, queueSpeed, timeUnit);
+		}, Config.queueSpeed, Config.queueSpeed, timeUnit);
 
 	}
 
@@ -87,14 +86,14 @@ public class QueueManager {
 				// Si le serveur est null alors il n'est pas en ligne.
 				if (server == null) {
 
-					title(Config.downServer, 0, 5 + 20 * queueSpeed, 0);
+					title(Config.downServer, 0, 5 + 20 * Config.queueSpeed, 0);
 
 				} else {
 
 					// Si le serveur est en maintenance
 					String motd = TextComponent.toLegacyText(server.getDescriptionComponent());
 					if (motd.contains("maintenance") || motd.contains(Config.defaultMotd)) {
-						title(Config.whitelistServer, 0, 5 + 20 * queueSpeed, 0);
+						title(Config.whitelistServer, 0, 5 + 20 * Config.queueSpeed, 0);
 						return;
 					}
 
@@ -112,7 +111,7 @@ public class QueueManager {
 						player.title(Config.joinServer, 10, 30, 10);
 
 						players.values().forEach(Player::removeOne);
-						title(Config.queueMove, 0, 5 + 20 * queueSpeed, 0, queue.size());
+						title(Config.queueMove, 0, 5 + 20 * Config.queueSpeed, 0, queue.size());
 
 					}
 
@@ -162,7 +161,7 @@ public class QueueManager {
 		if (player.isWaiting()) {
 
 			player.action(Config.alreadyInQueue);
-			String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * queueSpeed);
+			String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * Config.queueSpeed);
 			player.message(Config.queueInformation, player.getQueuePosition(), queue.size(), cooldown);
 			return;
 		}
@@ -184,7 +183,7 @@ public class QueueManager {
 			player.setQueuePosition(queue.size());
 		}
 
-		String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * queueSpeed);
+		String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * Config.queueSpeed);
 		player.message(Config.queueJoin, isAccess ? "prioritaire" : "normal", cooldown);
 
 	}
