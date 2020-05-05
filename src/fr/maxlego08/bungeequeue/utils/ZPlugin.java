@@ -117,5 +117,9 @@ public class ZPlugin extends Plugin implements fr.maxlego08.bungeequeue.utils.Pl
 	public Persist getPersist() {
 		return persist;
 	}
+	
+	protected boolean isPlugin(EnumPlugin plugin){
+		return this.getProxy().getPluginManager().getPlugin(plugin.getPluginName()) != null;
+	}
 
 }

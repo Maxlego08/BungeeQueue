@@ -32,8 +32,13 @@ public class CommandQueue extends Command {
 		}
 
 		ProxiedPlayer player = (ProxiedPlayer) sender;
-		// Verif si le joueur est login ici
-
+		
+		if (!plugin.getAccess().canJoinQueue(player)){
+			sender.sendMessage(new TextComponent("§cVous ne pouvez pas rejoindre la liste d'attente pour le moment."));
+			return;
+		}
+		
+		
 		if (!player.getServer().getInfo().getName().equalsIgnoreCase(Config.defaultServer)) {
 			sender.sendMessage(new TextComponent("§cVous ne pouvez pas faire cette commande ici."));
 			return;
