@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.google.gson.Gson;
 
+import fr.maxlego08.bungeequeue.utils.enums.LogType;
 import fr.maxlego08.bungeequeue.utils.storage.Saveable;
 
 public interface Plugin {

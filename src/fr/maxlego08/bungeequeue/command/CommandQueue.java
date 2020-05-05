@@ -27,20 +27,20 @@ public class CommandQueue extends Command {
 				return;
 			}
 
-			sender.sendMessage(new TextComponent("§cVous ne pouvez pas faire cette commande depuis la console."));
+			sender.sendMessage(new TextComponent(Config.onliPlayerCanUse));
 			return;
 		}
 
 		ProxiedPlayer player = (ProxiedPlayer) sender;
 		
 		if (!plugin.getAccess().canJoinQueue(player)){
-			sender.sendMessage(new TextComponent("§cVous ne pouvez pas rejoindre la liste d'attente pour le moment."));
+			sender.sendMessage(new TextComponent(Config.mustBeLogin));
 			return;
 		}
 		
 		
 		if (!player.getServer().getInfo().getName().equalsIgnoreCase(Config.defaultServer)) {
-			sender.sendMessage(new TextComponent("§cVous ne pouvez pas faire cette commande ici."));
+			sender.sendMessage(new TextComponent(Config.wrongServer));
 			return;
 		}
 

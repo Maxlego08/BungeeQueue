@@ -10,6 +10,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import fr.maxlego08.bungeequeue.utils.TimerBuilder;
+import fr.maxlego08.bungeequeue.utils.TitleMessage;
 import net.md_5.bungee.api.Callback;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -86,16 +87,14 @@ public class QueueManager {
 				// Si le serveur est null alors il n'est pas en ligne.
 				if (server == null) {
 
-					title("§6Liste d'attente", "§eLe serveur est actuellement indisponible", 0, 5 + 20 * queueSpeed, 0);
+					title(Config.downServer, 0, 5 + 20 * queueSpeed, 0);
 
 				} else {
 
-					
 					// Si le serveur est en maintenance
 					String motd = TextComponent.toLegacyText(server.getDescriptionComponent());
 					if (motd.contains("maintenance") || motd.contains(Config.defaultMotd)) {
-						title("§6Liste d'attente", "§eLe serveur est actuellement en maintenance.", 0,
-								5 + 20 * queueSpeed, 0);
+						title(Config.whitelistServer, 0, 5 + 20 * queueSpeed, 0);
 						return;
 					}
 
@@ -110,11 +109,10 @@ public class QueueManager {
 						Player player = queue.pollFirst();
 						player.getPlayer().connect(info);
 						player.setQueuePosition(0);
-						player.title("§f§kII§e Bienvenue §f§kII", "§eBienvenue sur §6PrideNetwork", 10, 30, 10);
+						player.title(Config.joinServer, 10, 30, 10);
 
 						players.values().forEach(Player::removeOne);
-						title("§6Liste d'attente", "§eVous êtes à la position §6%position% §esur §6%s", 0,
-								5 + 20 * queueSpeed, 0, queue.size());
+						title(Config.queueMove, 0, 5 + 20 * queueSpeed, 0, queue.size());
 
 					}
 
@@ -125,11 +123,13 @@ public class QueueManager {
 		});
 	}
 
-	private void title(String message, String subMessage, int fadeIn, int stay, int fadeOut, Object... args) {
+	private void title(TitleMessage message, int fadeIn, int stay, int fadeOut, Object... args) {
 		players.values().forEach(player -> {
-			if (player.isWaiting())
-				player.title(message, subMessage.replace("%position%", String.valueOf(player.getQueuePosition())),
-						fadeIn, stay, fadeOut, args);
+			if (player.isWaiting()) {
+				TitleMessage newMessage = new TitleMessage(message.getTitle(),
+						message.getSubTitle().replace("%position%", String.valueOf(player.getQueuePosition())));
+				player.title(newMessage, fadeIn, stay, fadeOut, args);
+			}
 		});
 	}
 
@@ -161,10 +161,9 @@ public class QueueManager {
 		// Si le joueur est déjà dans la liste d'attente
 		if (player.isWaiting()) {
 
-			player.action("§cVous êtes déjà dans la liste d'attente pour se connecter au serveur.");
+			player.action(Config.alreadyInQueue);
 			String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * queueSpeed);
-			player.message("§eVous êtes à la place §6%s §esur §6%s§e, §etemps §ed'attente §eestité §eà §6%s§e.",
-					player.getQueuePosition(), queue.size(), cooldown);
+			player.message(Config.queueInformation, player.getQueuePosition(), queue.size(), cooldown);
 			return;
 		}
 
@@ -186,8 +185,7 @@ public class QueueManager {
 		}
 
 		String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * queueSpeed);
-		player.message("§eVous venez de rejoindre la file §6%s§e, §Etemps §Ed'attente §Eestimé §eà §6%s§e.",
-				isAccess ? "prioritaire" : "normal", cooldown);
+		player.message(Config.queueJoin, isAccess ? "prioritaire" : "normal", cooldown);
 
 	}
 

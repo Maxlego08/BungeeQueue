@@ -2,7 +2,7 @@ package fr.maxlego08.bungeequeue.spigot.utils;
 
 import org.bukkit.Bukkit;
 
-import fr.maxlego08.bungeequeue.utils.LogType;
+import fr.maxlego08.bungeequeue.utils.enums.LogType;
 
 public class Logger {
 

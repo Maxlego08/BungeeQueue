@@ -11,8 +11,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import fr.maxlego08.bungeequeue.utils.LogType;
 import fr.maxlego08.bungeequeue.utils.Plugin;
+import fr.maxlego08.bungeequeue.utils.enums.LogType;
 import fr.maxlego08.bungeequeue.utils.storage.Persist;
 import fr.maxlego08.bungeequeue.utils.storage.Saveable;
 

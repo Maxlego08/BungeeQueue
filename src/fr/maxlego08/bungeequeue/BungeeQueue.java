@@ -4,9 +4,9 @@ import fr.maxlego08.bungeequeue.access.DefaultAccess;
 import fr.maxlego08.bungeequeue.access.JPremiumAccess;
 import fr.maxlego08.bungeequeue.command.CommandQueue;
 import fr.maxlego08.bungeequeue.listener.ServerListener;
-import fr.maxlego08.bungeequeue.utils.EnumPlugin;
-import fr.maxlego08.bungeequeue.utils.LogType;
 import fr.maxlego08.bungeequeue.utils.ZPlugin;
+import fr.maxlego08.bungeequeue.utils.enums.EnumPlugin;
+import fr.maxlego08.bungeequeue.utils.enums.LogType;
 
 public class BungeeQueue extends ZPlugin {
 

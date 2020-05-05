@@ -2,6 +2,7 @@ package fr.maxlego08.bungeequeue;
 
 import java.util.UUID;
 
+import fr.maxlego08.bungeequeue.utils.TitleMessage;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.Title;
@@ -61,14 +62,14 @@ public class Player {
 	 * 
 	 * @param message
 	 */
-	public void title(String message, String subMessage, int fadeIn, int stay, int fadeOut, Object... args) {
+	public void title(TitleMessage message, int fadeIn, int stay, int fadeOut, Object... args) {
 
 		if (getPlayer() == null)
 			return;
 
 		Title title = ProxyServer.getInstance().createTitle();
-		title.title(new TextComponent(message));
-		title.subTitle(new TextComponent(String.format(subMessage, args)));
+		title.title(new TextComponent(message.getTitle()));
+		title.subTitle(new TextComponent(String.format(message.getSubTitle(), args)));
 		title.fadeIn(fadeIn);
 		title.fadeOut(fadeOut);
 		title.stay(stay);
@@ -91,7 +92,7 @@ public class Player {
 	public void addOne() {
 		if (isWaiting()) {
 			queuePosition++;
-			message("§eUn joueur prioritaire vient de vous passer devant.");
+			message(Config.queueJoinByPass);
 		}
 	}
 
@@ -108,7 +109,7 @@ public class Player {
 		
 		if (queuePosition > position){
 			queuePosition--;
-			action("§eUn joueur vient de déconnecter, vous êtes passez à la position §6%s §esur §6%s§e.", queuePosition, size);
+			action(Config.queueLeavePlayer, queuePosition, size);
 		}
 		
 	}

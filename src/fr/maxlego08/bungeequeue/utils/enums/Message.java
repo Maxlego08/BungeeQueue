@@ -1,4 +1,4 @@
-package fr.maxlego08.bungeequeue.utils;
+package fr.maxlego08.bungeequeue.utils.enums;
 
 public enum Message {
 

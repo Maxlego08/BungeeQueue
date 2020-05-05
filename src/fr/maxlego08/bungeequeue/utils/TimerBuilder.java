@@ -1,5 +1,7 @@
 package fr.maxlego08.bungeequeue.utils;
 
+import fr.maxlego08.bungeequeue.utils.enums.Message;
+
 public class TimerBuilder {
 
 	public static String getFormatLongDays(long temps) {

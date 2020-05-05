@@ -3,8 +3,8 @@ package fr.maxlego08.bungeequeue.utils.storage;
 import java.io.File;
 import java.lang.reflect.Type;
 
-import fr.maxlego08.bungeequeue.utils.LogType;
 import fr.maxlego08.bungeequeue.utils.Plugin;
+import fr.maxlego08.bungeequeue.utils.enums.LogType;
 
 public class Persist {
 

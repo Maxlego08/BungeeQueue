@@ -1,5 +1,6 @@
 package fr.maxlego08.bungeequeue.utils;
 
+import fr.maxlego08.bungeequeue.utils.enums.LogType;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 
