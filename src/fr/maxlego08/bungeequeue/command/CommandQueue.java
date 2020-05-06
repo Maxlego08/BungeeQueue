@@ -38,8 +38,8 @@ public class CommandQueue extends Command {
 			return;
 		}
 		
-		
-		if (!player.getServer().getInfo().getName().equalsIgnoreCase(Config.defaultServer)) {
+		boolean isServer = Config.defaultsSevers.stream().filter(serv -> player.getServer().getInfo().getName().equals(serv)).findAny().isPresent();
+		if (!isServer) {
 			sender.sendMessage(new TextComponent(Config.wrongServer));
 			return;
 		}

@@ -1,5 +1,8 @@
 package fr.maxlego08.bungeequeue;
 
+import java.util.Arrays;
+import java.util.List;
+
 import fr.maxlego08.bungeequeue.utils.TitleMessage;
 import fr.maxlego08.bungeequeue.utils.storage.Persist;
 import fr.maxlego08.bungeequeue.utils.storage.Saveable;
@@ -9,7 +12,7 @@ public class Config implements Saveable {
 	public static int onlineBuffer = 2;
 	public static int queueSpeed = 5;
 	public static String targetServer = "faction";
-	public static String defaultServer = "lobby";
+	public static List<String> defaultsSevers = Arrays.asList("lobby", "lobby1");
 	
 	public static String prefix = "§8(§ePrideNetwork§8)";
 	public static String defaultMotd = "A Minecraft Server";
