@@ -16,6 +16,45 @@ Waiting list system for your bungeecord server.
 4. Make /queue reload in the console of your bungeecord to reload the configuration
 5. Here you can use the plugin !
 
+# Config
+```json
+{
+  "onlineBuffer": 2,
+  "queueSpeed": 5,
+  "targetServer": "faction",
+  "defaultsSevers": [
+    "lobby",
+    "lobby1"
+  ],
+  "prefix": "§8(§ePrideNetwork§8)",
+  "defaultMotd": "A Minecraft Server",
+  "onliPlayerCanUse": "§cVous ne pouvez pas faire cette commande depuis la console.",
+  "mustBeLogin": "§cVous ne pouvez pas rejoindre la liste d'attente pour le moment.",
+  "wrongServer": "§cVous ne pouvez pas faire commande ici.",
+  "alreadyInQueue": "§cVous êtes déjà dans la liste d'attente pour se connecter au serveur.",
+  "queueInformation": "§eVous êtes à la place §6%s §esur §6%s§e, §etemps §ed'attente §eestité §eà §6%s§e.",
+  "queueJoin": "§eVous venez de rejoindre la file §6%s§e, §Etemps §Ed'attente §Eestimé §eà §6%s§e.",
+  "queueJoinByPass": "§eUn joueur prioritaire vient de vous passer devant.",
+  "queueLeavePlayer": "§eUn joueur vient de déconnecter, vous êtes passez à la position §6%s §esur §6%s§e.",
+  "downServer": {
+    "title": "§6Liste d'attente",
+    "subTitle": "§eLe serveur est actuellement indisponible"
+  },
+  "whitelistServer": {
+    "title": "§6Liste d'attente",
+    "subTitle": "§eLe serveur est actuellement en maintenance."
+  },
+  "joinServer": {
+    "title": "§f§kII§e Bienvenue §f§kII",
+    "subTitle": "§eBienvenue sur §6PrideNetwork"
+  },
+  "queueMove": {
+    "title": "§6Liste d'attente",
+    "subTitle": "§eVous êtes à la position §6%position% §esur §6%s"
+  }
+}
+```
+
 # Add your QueueAccess
 
 To give or not access to the queue you can create your own QueueAccess. Here is an example with JPremium
