@@ -23,7 +23,7 @@ public class QueueManager {
 	private final Map<UUID, Player> players = new HashMap<>();
 	private final Deque<Player> queue = new LinkedList<>();
 	private boolean isRunning = false;
-	private final TimeUnit timeUnit = TimeUnit.SECONDS;
+	private final TimeUnit timeUnit = TimeUnit.MILLISECONDS;
 
 	public QueueManager(BungeeQueue plugin) {
 		super();
@@ -53,7 +53,7 @@ public class QueueManager {
 
 		ses.scheduleAtFixedRate(() -> {
 
-			// On désactive la task
+			// On dÃ©sactive la task
 			if (!isRunning) {
 				ses.shutdown();
 				return;
@@ -86,14 +86,14 @@ public class QueueManager {
 				// Si le serveur est null alors il n'est pas en ligne.
 				if (server == null) {
 
-					title(Config.downServer, 0, 5 + 20 * Config.queueSpeed, 0);
+					title(Config.downServer, 0, 5 + 20 * (Config.queueSpeed / 1000), 0);
 
 				} else {
 
 					// Si le serveur est en maintenance
 					String motd = TextComponent.toLegacyText(server.getDescriptionComponent());
 					if (motd.contains("maintenance") || motd.contains(Config.defaultMotd)) {
-						title(Config.whitelistServer, 0, 5 + 20 * Config.queueSpeed, 0);
+						title(Config.whitelistServer, 0, 5 + 20 * (Config.queueSpeed / 1000), 0);
 						return;
 					}
 
@@ -102,7 +102,7 @@ public class QueueManager {
 
 					// S'il y a moins de joueur que de max player, - 2 car il y
 					// a 2
-					// joueurs qui peuvent se connecter en même temps
+					// joueurs qui peuvent se connecter en mÃªme temps
 					if (onlinePlayers < maxPlayer - Config.onlineBuffer) {
 
 						Player player = queue.pollFirst();
@@ -111,7 +111,7 @@ public class QueueManager {
 						player.title(Config.joinServer, 10, 30, 10);
 
 						players.values().forEach(Player::removeOne);
-						title(Config.queueMove, 0, 5 + 20 * Config.queueSpeed, 0, queue.size());
+						title(Config.queueMove, 0, 5 + 20 * (Config.queueSpeed / 1000), 0, queue.size());
 
 					}
 
@@ -157,21 +157,21 @@ public class QueueManager {
 
 		Player player = getPlayer(proxiedPlayer);
 
-		// Si le joueur est déjà dans la liste d'attente
+		// Si le joueur est dÃ©jÃ  dans la liste d'attente
 		if (player.isWaiting()) {
 
 			player.action(Config.alreadyInQueue);
-			String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * Config.queueSpeed);
+			String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * Config.queueSpeed / 1000);
 			player.message(Config.queueInformation, player.getQueuePosition(), queue.size(), cooldown);
 			return;
 		}
 
 		boolean isAccess = proxiedPlayer.hasPermission("bypass.queue");
 
-		// Système d'ajout dans la queue
+		// SystÃ¨me d'ajout dans la queue
 		if (isAccess) {
 
-			// On va ensuite décaler tous les players
+			// On va ensuite dÃ©caler tous les players
 			players.values().forEach(Player::addOne);
 
 			// On ajout ensute le joueur
@@ -183,7 +183,7 @@ public class QueueManager {
 			player.setQueuePosition(queue.size());
 		}
 
-		String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * Config.queueSpeed);
+		String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * Config.queueSpeed / 1000);
 		player.message(Config.queueJoin, isAccess ? "prioritaire" : "normal", cooldown);
 
 	}

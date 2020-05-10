@@ -10,25 +10,25 @@ import fr.maxlego08.bungeequeue.utils.storage.Saveable;
 public class Config implements Saveable {
 
 	public static int onlineBuffer = 2;
-	public static int queueSpeed = 5;
+	public static int queueSpeed = 5000;
 	public static String targetServer = "faction";
 	public static List<String> defaultsSevers = Arrays.asList("lobby", "lobby1");
 	
-	public static String prefix = "§8(§ePrideNetwork§8)";
+	public static String prefix = "Â§8(Â§ePrideNetworkÂ§8)";
 	public static String defaultMotd = "A Minecraft Server";
-	public static String onliPlayerCanUse = "§cVous ne pouvez pas faire cette commande depuis la console.";
-	public static String mustBeLogin = "§cVous ne pouvez pas rejoindre la liste d'attente pour le moment.";
-	public static String wrongServer = "§cVous ne pouvez pas faire commande ici.";
-	public static String alreadyInQueue = "§cVous êtes déjà dans la liste d'attente pour se connecter au serveur.";
-	public static String queueInformation = "§eVous êtes à la place §6%s §esur §6%s§e, §etemps §ed'attente §eestité §eà §6%s§e.";
-	public static String queueJoin = "§eVous venez de rejoindre la file §6%s§e, §Etemps §Ed'attente §Eestimé §eà §6%s§e.";
-	public static String queueJoinByPass = "§eUn joueur prioritaire vient de vous passer devant.";
-	public static String queueLeavePlayer = "§eUn joueur vient de déconnecter, vous êtes passez à la position §6%s §esur §6%s§e.";
+	public static String onliPlayerCanUse = "Â§cVous ne pouvez pas faire cette commande depuis la console.";
+	public static String mustBeLogin = "Â§cVous ne pouvez pas rejoindre la liste d'attente pour le moment.";
+	public static String wrongServer = "Â§cVous ne pouvez pas faire commande ici.";
+	public static String alreadyInQueue = "Â§cVous Ãªtes dÃ©jÃ  dans la liste d'attente pour se connecter au serveur.";
+	public static String queueInformation = "Â§eVous Ãªtes Ã  la place Â§6%s Â§esur Â§6%sÂ§e, Â§etemps Â§ed'attente Â§eestitÃ© Â§eÃ  Â§6%sÂ§e.";
+	public static String queueJoin = "Â§eVous venez de rejoindre la file Â§6%sÂ§e, Â§Etemps Â§Ed'attente Â§EestimÃ© Â§eÃ  Â§6%sÂ§e.";
+	public static String queueJoinByPass = "Â§eUn joueur prioritaire vient de vous passer devant.";
+	public static String queueLeavePlayer = "Â§eUn joueur vient de dÃ©connecter, vous Ãªtes passez Ã  la position Â§6%s Â§esur Â§6%sÂ§e.";
 	
-	public static TitleMessage downServer = new TitleMessage("§6Liste d'attente", "§eLe serveur est actuellement indisponible");
-	public static TitleMessage whitelistServer = new TitleMessage("§6Liste d'attente", "§eLe serveur est actuellement en maintenance.");
-	public static TitleMessage joinServer = new TitleMessage("§f§kII§e Bienvenue §f§kII", "§eBienvenue sur §6PrideNetwork");
-	public static TitleMessage queueMove = new TitleMessage("§6Liste d'attente", "§eVous êtes à la position §6%position% §esur §6%s");
+	public static TitleMessage downServer = new TitleMessage("Â§6Liste d'attente", "Â§eLe serveur est actuellement indisponible");
+	public static TitleMessage whitelistServer = new TitleMessage("Â§6Liste d'attente", "Â§eLe serveur est actuellement en maintenance.");
+	public static TitleMessage joinServer = new TitleMessage("Â§fÂ§kIIÂ§e Bienvenue Â§fÂ§kII", "Â§eBienvenue sur Â§6PrideNetwork");
+	public static TitleMessage queueMove = new TitleMessage("Â§6Liste d'attente", "Â§eVous Ãªtes Ã  la position Â§6%position% Â§esur Â§6%s");
 	
 	@Override
 	public void save(Persist persist) {
