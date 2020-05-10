@@ -16,10 +16,6 @@ Waiting list system for your bungeecord server.
 4. Make /queue reload in the console of your bungeecord to reload the configuration
 5. Here you can use the plugin !
 
-# Video
-
-[![video](https://img.youtube.com/vi/dRAf7EXnPCg/0.jpg)](https://www.youtube.com/watch?v=dRAf7EXnPCg)
-
 # Config
 ```json
 {
