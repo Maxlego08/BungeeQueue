@@ -26,6 +26,66 @@ Waiting list system for your bungeecord server.
     "lobby",
     "lobby1"
   ],
+  "useMotd": false,
+  "motdSpeedMaintenanceTask": 10000,
+  "maintenanceServer": "lobby",
+  "motd": {
+    "upMessage": "§6§lPrideNetwork §6✭ §eFaction §c100% §d§lFarm2Win §6✭ §7(§e1.8§7)",
+    "downMessage": "§f§l» §fOuverture bientôt",
+    "messages": [
+      "§7§m-------------------------------------------",
+      "",
+      "§f» §6PrideNetwork§e le serveur §bFaction§d 100% Farm2Win",
+      "§f» §eDe la §a1.8.9§e à la §a1.15.2 §e!",
+      "",
+      "§f» §eDiscord§7: §bhttps://discord.gg/3wjkeJE",
+      "§f» §eSite§7: §bhttps://pridenetwork.net/",
+      "",
+      "§f» §e§lRejoins les §6§l%online% joueurs §e§ldéjà connectés !",
+      "",
+      "§7§m-------------------------------------------"
+    ]
+  },
+  "maintenanceMotd": {
+    "upMessage": "§6§lPrideNetwork §6✭ §eFaction §c100% §d§lFarm2Win §6✭ §7(§e1.8§7)",
+    "downMessage": "§f§l» §cLe serveur est en maintenance",
+    "messages": [
+      "§7§m-------------------------------------------",
+      "",
+      "§f» §6PrideNetwork§e le serveur §bFaction§d 100% Farm2Win",
+      "§f» §eDe la §a1.8.9§e à la §a1.15.2 §e!",
+      "",
+      "§f» §eDiscord§7: §bhttps://discord.gg/3wjkeJE",
+      "§f» §eSite§7: §bhttps://pridenetwork.net/",
+      "",
+      "§f» §e§lRejoins les §6§l%online% joueurs §e§ldéjà connectés !",
+      "",
+      "§7§m-------------------------------------------"
+    ]
+  },
+  "fullMotd": {
+    "upMessage": "§6§lPrideNetwork §6✭ §eFaction §c100% §d§lFarm2Win §6✭ §7(§e1.8§7)",
+    "downMessage": "§f§l» §cLe serveur est actuellement plein !",
+    "messages": [
+      "§7§m-------------------------------------------",
+      "",
+      "§f» §6PrideNetwork§e le serveur §bFaction§d 100% Farm2Win",
+      "§f» §eDe la §a1.8.9§e à la §a1.15.2 §e!",
+      "",
+      "§f» §eDiscord§7: §bhttps://discord.gg/3wjkeJE",
+      "§f» §eSite§7: §bhttps://pridenetwork.net/",
+      "",
+      "§f» §e§lRejoins les §6§l%online% joueurs §e§ldéjà connectés !",
+      "",
+      "§7§m-------------------------------------------"
+    ]
+  },
+  "whitelistUsers": [
+    "Maxlego08",
+    "AzartoxHD",
+    "tanguyplayer"
+  ],
+  "kickMessageMaintenance": "§cLe serveur est actuellement en maintenance",
   "prefix": "§8(§ePrideNetwork§8)",
   "defaultMotd": "A Minecraft Server",
   "onliPlayerCanUse": "§cVous ne pouvez pas faire cette commande depuis la console.",
