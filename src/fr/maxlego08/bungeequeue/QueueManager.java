@@ -86,14 +86,14 @@ public class QueueManager {
 				// Si le serveur est null alors il n'est pas en ligne.
 				if (server == null) {
 
-					title(Config.downServer, 0, 5 + 20 * (Config.queueSpeed / 1000), 0);
+					title(Config.downServer, 0, 5 + 20 * (int) (Config.queueSpeed / 1000), 0);
 
 				} else {
 
 					// Si le serveur est en maintenance
 					String motd = TextComponent.toLegacyText(server.getDescriptionComponent());
 					if (motd.contains("maintenance") || motd.contains(Config.defaultMotd)) {
-						title(Config.whitelistServer, 0, 5 + 20 * (Config.queueSpeed / 1000), 0);
+						title(Config.whitelistServer, 0, 5 + 20 * (int) (Config.queueSpeed / 1000), 0);
 						return;
 					}
 
@@ -111,7 +111,7 @@ public class QueueManager {
 						player.title(Config.joinServer, 10, 30, 10);
 
 						players.values().forEach(Player::removeOne);
-						title(Config.queueMove, 0, 5 + 20 * (Config.queueSpeed / 1000), 0, queue.size());
+						title(Config.queueMove, 0, 5 + 20 * (int) (Config.queueSpeed / 1000), 0, queue.size());
 
 					}
 
