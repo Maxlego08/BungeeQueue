@@ -35,6 +35,9 @@ public class ServerListener implements Listener {
 	@EventHandler(priority = 64)
 	public void onServerListPing(ProxyPingEvent event) {
 
+		if (!Config.useMotd)
+			return;
+		
 		ServerPing ping = event.getResponse();
 
 		int online = ping.getPlayers().getOnline();
@@ -78,6 +81,9 @@ public class ServerListener implements Listener {
 	@EventHandler
 	public void onServerKickEvent(PreLoginEvent event) {
 
+		if (!Config.useMotd)
+			return;
+		
 		if (Config.whitelistUsers.contains(event.getConnection().getName()))
 			return;
 
