@@ -152,3 +152,8 @@ public class JPremiumAccess implements QueueAccess {
 }
 ```
 You just have to define it in the BungeeQueue class.
+
+# API
+```java
+QueueApi.join(player);
+```
