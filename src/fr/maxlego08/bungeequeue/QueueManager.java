@@ -155,6 +155,11 @@ public class QueueManager {
 	 */
 	public void joinQueue(ProxiedPlayer proxiedPlayer) {
 
+		if (!plugin.getAccess().canJoinQueue(proxiedPlayer)){
+			proxiedPlayer.sendMessage(new TextComponent(Config.mustBeLogin));
+			return;
+		}
+		
 		Player player = getPlayer(proxiedPlayer);
 
 		// Si le joueur est déjà dans la liste d'attente

@@ -10,7 +10,9 @@ import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.ServerPing.PlayerInfo;
 import net.md_5.bungee.api.ServerPing.Players;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
+import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -37,7 +39,7 @@ public class ServerListener implements Listener {
 
 		if (!Config.useMotd)
 			return;
-		
+
 		ServerPing ping = event.getResponse();
 
 		int online = ping.getPlayers().getOnline();
@@ -83,7 +85,7 @@ public class ServerListener implements Listener {
 
 		if (!Config.useMotd)
 			return;
-		
+
 		if (Config.whitelistUsers.contains(event.getConnection().getName()))
 			return;
 
@@ -93,6 +95,17 @@ public class ServerListener implements Listener {
 			event.setCancelReason(new TextComponent(Config.kickMessageMaintenance));
 
 		}
+	}
+
+	@EventHandler
+	public void onServer(PluginMessageEvent event) {
+
+		String channel = event.getTag();
+		if (channel.equals(Config.channelName)) {
+			ProxiedPlayer player = plugin.getProxy().getPlayer(event.getReceiver().toString());
+			plugin.getManager().joinQueue(player);
+		}
+
 	}
 
 }

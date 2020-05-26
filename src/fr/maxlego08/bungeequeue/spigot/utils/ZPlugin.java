@@ -23,8 +23,12 @@ public class ZPlugin extends JavaPlugin implements Plugin {
 	private Logger logger = new Logger(getDescription().getFullName());
 	private List<Saveable> saveables = new ArrayList<Saveable>();
 	private long enableTime;
+	private static ZPlugin plugin;
 
 	protected void preEnable() {
+		
+		plugin = this;
+		
 		enableTime = System.currentTimeMillis();
 
 		gson = getGsonBuilder().create();
@@ -94,6 +98,18 @@ public class ZPlugin extends JavaPlugin implements Plugin {
 
 	public Persist getPersist() {
 		return persist;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static ZPlugin getPlugin() {
+		return plugin;
+	}
+	
+	public List<Saveable> getSaveables() {
+		return saveables;
 	}
 
 }

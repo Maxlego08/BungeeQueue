@@ -40,6 +40,7 @@ public class BungeeQueue extends ZPlugin {
 			log("JPremium detection, use of JPremium access to use the waiting list", LogType.SUCCESS);
 		}
 
+		this.getProxy().registerChannel(Config.channelName);
 		addListener(access);
 		postEnable();
 

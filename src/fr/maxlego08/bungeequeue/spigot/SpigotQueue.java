@@ -13,6 +13,7 @@ public class SpigotQueue extends ZPlugin {
 		preEnable();
 
 		addListener(listener = new ServerListener());
+		addSave(new Config());
 
 		postEnable();
 
@@ -20,12 +21,16 @@ public class SpigotQueue extends ZPlugin {
 		getServer().getScheduler().runTaskLater(this, () -> {
 			listener.setEnable(true);
 		}, 20 * 10);
+		
+		getSaveables().forEach(s -> s.load(getPersist()));
 
 	}
 
 	@Override
 	public void onDisable() {
 		preDisable();
+		
+		getSaveables().forEach(s -> s.save(getPersist()));
 
 		postDisable();
 	}

@@ -16,6 +16,8 @@ public class Config implements Saveable {
 	public static String targetServer = "faction";
 	public static List<String> defaultsSevers = Arrays.asList("lobby", "lobby1");
 	
+	public static String channelName = "zQueue";
+	
 	public static boolean useMotd = true;
 	public static long motdSpeedMaintenanceTask = 10000;
 	public static String maintenanceServer = "lobby";
