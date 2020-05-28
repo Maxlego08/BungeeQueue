@@ -1,0 +1,100 @@
+{
+  "onlineBuffer": 2,
+  "queueSpeed": 5000,
+  "targetServer": "faction",
+  "defaultsSevers": [
+    "lobby",
+    "lobby1"
+  ],
+  "channelName": "zQueue",
+  "useKickDefaultServer": true,
+  "defaultKickServer": "lobby",
+  "useCustomListCommand": true,
+  "useMotd": true,
+  "motdSpeedMaintenanceTask": 10000,
+  "maintenanceServer": "lobby",
+  "motd": {
+    "upMessage": "§6§lPrideNetwork §6✭ §eFaction §c100% §d§lFarm2Win §6✭ §7(§e1.8§7)",
+    "downMessage": "§f§l» §fOuverture bientôt",
+    "messages": [
+      "§7§m-------------------------------------------",
+      "",
+      "§f» §6PrideNetwork§e le serveur §bFaction§d 100% Farm2Win",
+      "§f» §eDe la §a1.8.9§e à la §a1.15.2 §e!",
+      "",
+      "§f» §eDiscord§7: §bhttps://discord.gg/3wjkeJE",
+      "§f» §eSite§7: §bhttps://pridenetwork.net/",
+      "",
+      "§f» §e§lRejoins les §6§l%online% joueurs §e§ldéjà connectés !",
+      "",
+      "§7§m-------------------------------------------"
+    ]
+  },
+  "maintenanceMotd": {
+    "upMessage": "§6§lPrideNetwork §6✭ §eFaction §c100% §d§lFarm2Win §6✭ §7(§e1.8§7)",
+    "downMessage": "§f§l» §cLe serveur est en maintenance",
+    "messages": [
+      "§7§m-------------------------------------------",
+      "",
+      "§f» §6PrideNetwork§e le serveur §bFaction§d 100% Farm2Win",
+      "§f» §eDe la §a1.8.9§e à la §a1.15.2 §e!",
+      "",
+      "§f» §eDiscord§7: §bhttps://discord.gg/3wjkeJE",
+      "§f» §eSite§7: §bhttps://pridenetwork.net/",
+      "",
+      "§f» §e§lRejoins les §6§l%online% joueurs §e§ldéjà connectés !",
+      "",
+      "§7§m-------------------------------------------"
+    ]
+  },
+  "fullMotd": {
+    "upMessage": "§6§lPrideNetwork §6✭ §eFaction §c100% §d§lFarm2Win §6✭ §7(§e1.8§7)",
+    "downMessage": "§f§l» §cLe serveur est actuellement plein !",
+    "messages": [
+      "§7§m-------------------------------------------",
+      "",
+      "§f» §6PrideNetwork§e le serveur §bFaction§d 100% Farm2Win",
+      "§f» §eDe la §a1.8.9§e à la §a1.15.2 §e!",
+      "",
+      "§f» §eDiscord§7: §bhttps://discord.gg/3wjkeJE",
+      "§f» §eSite§7: §bhttps://pridenetwork.net/",
+      "",
+      "§f» §e§lRejoins les §6§l%online% joueurs §e§ldéjà connectés !",
+      "",
+      "§7§m-------------------------------------------"
+    ]
+  },
+  "whitelistUsers": [
+    "Maxlego08"
+  ],
+  "kickMessageMaintenance": "§cLe serveur est actuellement en maintenance",
+  "prefix": "§8(§ePrideNetwork§8)",
+  "defaultMotd": "A Minecraft Server",
+  "onliPlayerCanUse": "§cVous ne pouvez pas faire cette commande depuis la console.",
+  "mustBeLogin": "§cVous ne pouvez pas rejoindre la liste d'attente pour le moment.",
+  "wrongServer": "§cVous ne pouvez pas faire commande ici.",
+  "alreadyInQueue": "§cVous êtes déjà dans la liste d'attente pour se connecter au serveur.",
+  "queueInformation": "§eVous êtes à la place §6%s §esur §6%s§e, §etemps §ed'attente §eestité §eà §6%s§e.",
+  "queueJoin": "§eVous venez de rejoindre la file §6%s§e, §Etemps §Ed'attente §eestimé §à §6%s§e.",
+  "queueJoinByPass": "§eUn joueur prioritaire vient de vous passer devant.",
+  "queueLeavePlayer": "§eUn joueur vient de déconnecter, vous êtes passez à la position §6%s §esur §6%s§e.",
+  "downServer": {
+    "title": "§6Liste d'attente",
+    "subTitle": "§eLe serveur est actuellement indisponible"
+  },
+  "whitelistServer": {
+    "title": "§6Liste d'attente",
+    "subTitle": "§eLe serveur est actuellement en maintenance."
+  },
+  "joinServer": {
+    "title": "§f§kII§e Bienvenue §f§kII",
+    "subTitle": "§eBienvenue sur §6PrideNetwork"
+  },
+  "queueMove": {
+    "title": "§6Liste d'attente",
+    "subTitle": "§eVous êtes à la position §6%position% §esur §6%s"
+  },
+  "listCommandCooldown": "§cVous §cdevez §cattendre §6%s §cavant §cde §cfaire §ccette §ccommande.",
+  "networkListMessage": "§f§l> §6Network §8» §b%s §ejoueurs",
+  "serverListMessage": "§f§l> §6%name% §8» §b%online% §ejoueurs"
+}

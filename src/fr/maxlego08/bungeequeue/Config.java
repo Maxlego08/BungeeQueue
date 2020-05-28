@@ -15,10 +15,11 @@ public class Config implements Saveable {
 	public static long queueSpeed = 5000;
 	public static String targetServer = "faction";
 	public static List<String> defaultsSevers = Arrays.asList("lobby", "lobby1");
-	
 	public static String channelName = "zQueue";
-	
-	public static boolean useMotd = true;
+	public static boolean useKickDefaultServer = false;
+	public static String defaultKickServer = "lobby";
+	public static boolean useCustomListCommand = false;
+	public static boolean useMotd = false;
 	public static long motdSpeedMaintenanceTask = 10000;
 	public static String maintenanceServer = "lobby";
 	public static Motd motd = new Motd(
@@ -89,6 +90,10 @@ public class Config implements Saveable {
 	public static TitleMessage whitelistServer = new TitleMessage("§6Liste d'attente", "§eLe serveur est actuellement en maintenance.");
 	public static TitleMessage joinServer = new TitleMessage("§f§kII§e Bienvenue §f§kII", "§eBienvenue sur §6PrideNetwork");
 	public static TitleMessage queueMove = new TitleMessage("§6Liste d'attente", "§eVous àªtes à  la position §6%position% §esur §6%s");
+	
+	public static String listCommandCooldown = "§cVous §cdevez §cattendre §6%s §cavant §cde §cfaire §ccette §ccommande.";
+	public static String networkListMessage = "§f§l> §6Network §8» §b%s §ejoueurs";
+	public static String serverListMessage = "§f§l> §6%name% §8» §b%online% §ejoueurs";
 	
 	static {
 		

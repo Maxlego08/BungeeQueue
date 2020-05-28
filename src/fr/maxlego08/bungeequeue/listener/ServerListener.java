@@ -6,15 +6,19 @@ import java.util.stream.Collectors;
 import fr.maxlego08.bungeequeue.BungeeQueue;
 import fr.maxlego08.bungeequeue.Config;
 import fr.maxlego08.bungeequeue.utils.Motd;
+import net.md_5.bungee.api.AbstractReconnectHandler;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.ServerPing.PlayerInfo;
 import net.md_5.bungee.api.ServerPing.Players;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
+import net.md_5.bungee.api.event.ServerKickEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
@@ -104,6 +108,27 @@ public class ServerListener implements Listener {
 		if (channel.equals(Config.channelName)) {
 			ProxiedPlayer player = plugin.getProxy().getPlayer(event.getReceiver().toString());
 			plugin.getManager().joinQueue(player);
+		}
+
+	}
+
+	@EventHandler
+	public void onServerKickEvent(ServerKickEvent ev) {
+
+		if (!Config.useKickDefaultServer)
+			return;
+
+		ServerInfo kickedFrom = null;
+		if (ev.getPlayer().getServer() != null)
+			kickedFrom = ev.getPlayer().getServer().getInfo();
+		else if (this.plugin.getProxy().getReconnectHandler() != null)
+			kickedFrom = this.plugin.getProxy().getReconnectHandler().getServer(ev.getPlayer());
+		else
+			kickedFrom = AbstractReconnectHandler.getForcedHost(ev.getPlayer().getPendingConnection());
+		ServerInfo kickTo = ProxyServer.getInstance().getServerInfo(Config.defaultKickServer);
+		if (kickedFrom == null || (!kickedFrom.equals(kickTo))) {
+			ev.setCancelled(true);
+			ev.setCancelServer(kickTo);
 		}
 
 	}

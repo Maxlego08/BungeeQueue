@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import fr.maxlego08.bungeequeue.access.DefaultAccess;
 import fr.maxlego08.bungeequeue.access.JPremiumAccess;
+import fr.maxlego08.bungeequeue.command.CommandList;
 import fr.maxlego08.bungeequeue.command.CommandQueue;
 import fr.maxlego08.bungeequeue.listener.ServerListener;
 import fr.maxlego08.bungeequeue.utils.ZPlugin;
@@ -32,6 +33,7 @@ public class BungeeQueue extends ZPlugin {
 		manager.run();
 
 		addCommand(new CommandQueue(this));
+		
 		addSave(new Config());
 		addListener(new ServerListener(this));
 
@@ -42,10 +44,14 @@ public class BungeeQueue extends ZPlugin {
 
 		this.getProxy().registerChannel(Config.channelName);
 		addListener(access);
+		
 		postEnable();
 
 		if (Config.useMotd)
 			this.motdTask();
+		
+		if (Config.useCustomListCommand)
+			addCommand(new CommandList());
 
 	}
 
