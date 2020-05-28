@@ -159,6 +159,7 @@ public class JPremiumAccess implements QueueAccess {
 You just have to define it in the BungeeQueue class.
 
 # API
+Use on a spigot server to join the waiting list without having to use the command.
 ```java
 QueueApi.join(player);
 ```
