@@ -20,13 +20,17 @@ Waiting list system for your bungeecord server.
 ```json
 {
   "onlineBuffer": 2,
-  "queueSpeed": 5,
+  "queueSpeed": 5000,
   "targetServer": "faction",
   "defaultsSevers": [
     "lobby",
     "lobby1"
   ],
-  "useMotd": false,
+  "channelName": "zQueue",
+  "useKickDefaultServer": true,
+  "defaultKickServer": "lobby",
+  "useCustomListCommand": true,
+  "useMotd": true,
   "motdSpeedMaintenanceTask": 10000,
   "maintenanceServer": "lobby",
   "motd": {
@@ -81,9 +85,7 @@ Waiting list system for your bungeecord server.
     ]
   },
   "whitelistUsers": [
-    "Maxlego08",
-    "AzartoxHD",
-    "tanguyplayer"
+    "Maxlego08"
   ],
   "kickMessageMaintenance": "§cLe serveur est actuellement en maintenance",
   "prefix": "§8(§ePrideNetwork§8)",
@@ -93,7 +95,7 @@ Waiting list system for your bungeecord server.
   "wrongServer": "§cVous ne pouvez pas faire commande ici.",
   "alreadyInQueue": "§cVous êtes déjà dans la liste d'attente pour se connecter au serveur.",
   "queueInformation": "§eVous êtes à la place §6%s §esur §6%s§e, §etemps §ed'attente §eestité §eà §6%s§e.",
-  "queueJoin": "§eVous venez de rejoindre la file §6%s§e, §Etemps §Ed'attente §Eestimé §eà §6%s§e.",
+  "queueJoin": "§eVous venez de rejoindre la file §6%s§e, §Etemps §Ed'attente §eestimé §à §6%s§e.",
   "queueJoinByPass": "§eUn joueur prioritaire vient de vous passer devant.",
   "queueLeavePlayer": "§eUn joueur vient de déconnecter, vous êtes passez à la position §6%s §esur §6%s§e.",
   "downServer": {
@@ -111,7 +113,10 @@ Waiting list system for your bungeecord server.
   "queueMove": {
     "title": "§6Liste d'attente",
     "subTitle": "§eVous êtes à la position §6%position% §esur §6%s"
-  }
+  },
+  "listCommandCooldown": "§cVous §cdevez §cattendre §6%s §cavant §cde §cfaire §ccette §ccommande.",
+  "networkListMessage": "§f§l> §6Network §8» §b%s §ejoueurs",
+  "serverListMessage": "§f§l> §6%name% §8» §b%online% §ejoueurs"
 }
 ```
 
