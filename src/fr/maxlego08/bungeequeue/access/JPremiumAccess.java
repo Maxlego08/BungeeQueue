@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.jakubson.premium.data.api.event.UserLoginEvent;
-import com.jakubson.premium.data.api.event.UserRegisterEvent;
-
+import com.jakub.premium.event.AsyncUserPostLoginEvent;
+import com.jakub.premium.event.AsyncUserPostRegisterEvent;
 import fr.maxlego08.bungeequeue.QueueAccess;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
@@ -22,15 +21,15 @@ public class JPremiumAccess implements QueueAccess {
 	}
 	
 	@EventHandler
-	public void onLogin(UserLoginEvent event) {
-		UUID uuid = event.getUser().getPlayer().getUniqueId();
+	public void onLogin(AsyncUserPostLoginEvent event) {
+		UUID uuid = event.getUser().getProxiedPlayer().getUniqueId();
 		if (!accessPlayers.contains(uuid))
 			accessPlayers.add(uuid);
 	}
 
 	@EventHandler
-	public void onLogin(UserRegisterEvent event) {
-		UUID uuid = event.getUser().getPlayer().getUniqueId();
+	public void onRegister(AsyncUserPostRegisterEvent event) {
+		UUID uuid = event.getUser().getProxiedPlayer().getUniqueId();
 		if (!accessPlayers.contains(uuid))
 			accessPlayers.add(uuid);
 	}
