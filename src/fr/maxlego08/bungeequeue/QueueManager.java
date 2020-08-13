@@ -155,41 +155,52 @@ public class QueueManager {
 	 */
 	public void joinQueue(ProxiedPlayer proxiedPlayer) {
 
-		if (!plugin.getAccess().canJoinQueue(proxiedPlayer)){
+		if (!plugin.getAccess().canJoinQueue(proxiedPlayer)) {
 			proxiedPlayer.sendMessage(new TextComponent(Config.mustBeLogin));
 			return;
 		}
-		
+
 		Player player = getPlayer(proxiedPlayer);
 
-		// Si le joueur est déjà dans la liste d'attente
-		if (player.isWaiting()) {
+		if (Config.bypassUsers.contains(proxiedPlayer.getName())) {
 
-			player.action(Config.alreadyInQueue);
-			String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * Config.queueSpeed / 1000);
-			player.message(Config.queueInformation, player.getQueuePosition(), queue.size(), cooldown);
-			return;
-		}
-
-		boolean isAccess = proxiedPlayer.hasPermission("bypass.queue");
-
-		// Système d'ajout dans la queue
-		if (isAccess) {
-
-			// On va ensuite décaler tous les players
-			players.values().forEach(Player::addOne);
-
-			// On ajout ensute le joueur
-			queue.addFirst(player);
-			player.setQueuePosition(1);
+			ServerInfo info = plugin.getProxy().getServerInfo(Config.targetServer);
+			player.message(Config.queueBypass);
+			if (info != null)
+				player.getPlayer().connect(info);
 
 		} else {
-			queue.addLast(player);
-			player.setQueuePosition(queue.size());
-		}
 
-		String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * Config.queueSpeed / 1000);
-		player.message(Config.queueJoin, isAccess ? "prioritaire" : "normal", cooldown);
+			// Si le joueur est d�j� dans la liste d'attente
+			if (player.isWaiting()) {
+
+				player.action(Config.alreadyInQueue);
+				String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * Config.queueSpeed / 1000);
+				player.message(Config.queueInformation, player.getQueuePosition(), queue.size(), cooldown);
+				return;
+			}
+
+			boolean isAccess = proxiedPlayer.hasPermission("bypass.queue");
+
+			// Système d'ajout dans la queue
+			if (isAccess) {
+
+				// On va ensuite décaler tous les players
+				players.values().forEach(Player::addOne);
+
+				// On ajout ensute le joueur
+				queue.addFirst(player);
+				player.setQueuePosition(1);
+
+			} else {
+				queue.addLast(player);
+				player.setQueuePosition(queue.size());
+			}
+
+			String cooldown = TimerBuilder.getStringTime(player.getQueuePosition() * Config.queueSpeed / 1000);
+			player.message(Config.queueJoin, isAccess ? "prioritaire" : "normal", cooldown);
+
+		}
 
 	}
 
