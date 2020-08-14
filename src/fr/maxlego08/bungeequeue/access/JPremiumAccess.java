@@ -22,14 +22,14 @@ public class JPremiumAccess implements QueueAccess {
 	
 	@EventHandler
 	public void onLogin(AsyncUserPostLoginEvent event) {
-		UUID uuid = event.getUser().getProxiedPlayer().getUniqueId();
+		UUID uuid = event.getUser().getUniqueId();
 		if (!accessPlayers.contains(uuid))
 			accessPlayers.add(uuid);
 	}
 
 	@EventHandler
 	public void onRegister(AsyncUserPostRegisterEvent event) {
-		UUID uuid = event.getUser().getProxiedPlayer().getUniqueId();
+		UUID uuid = event.getUser().getUniqueId();
 		if (!accessPlayers.contains(uuid))
 			accessPlayers.add(uuid);
 	}
