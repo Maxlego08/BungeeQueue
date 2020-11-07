@@ -25,20 +25,38 @@ public class CommandQueue extends Command {
 				plugin.load();
 				sender.sendMessage(new TextComponent("§aReload !"));
 				return;
+			} else if (args.length == 2 && args[0].equalsIgnoreCase("speed")) {
+				try {
+					long integer = Long.valueOf(args[1]);
+					Config.queueSpeed = integer;
+					plugin.save();
+					plugin.getManager().restart();
+					sender.sendMessage(
+							new TextComponent(Config.queueSpeedChange.replace("%speed%", String.valueOf(integer))));
+				} catch (Exception e) {
+					sender.sendMessage(new TextComponent("§f/queue speed <vitesse>"));
+				}
+				return;
 			}
 
 			sender.sendMessage(new TextComponent(Config.onliPlayerCanUse));
 			return;
 		}
 
+		if (!Config.useQueueCommand) {
+			sender.sendMessage(new TextComponent(Config.queueCommandDisable));
+			return;
+		}
+
 		ProxiedPlayer player = (ProxiedPlayer) sender;
-		
-		if (!plugin.getAccess().canJoinQueue(player)){
+
+		if (!plugin.getAccess().canJoinQueue(player)) {
 			sender.sendMessage(new TextComponent(Config.mustBeLogin));
 			return;
 		}
-		
-		boolean isServer = Config.defaultsSevers.stream().filter(serv -> player.getServer().getInfo().getName().equals(serv)).findAny().isPresent();
+
+		boolean isServer = Config.defaultsSevers.stream()
+				.filter(serv -> player.getServer().getInfo().getName().equals(serv)).findAny().isPresent();
 		if (!isServer) {
 			sender.sendMessage(new TextComponent(Config.wrongServer));
 			return;

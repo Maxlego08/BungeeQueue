@@ -19,9 +19,9 @@ import net.md_5.bungee.api.plugin.Plugin;
 public class ZPlugin extends Plugin implements fr.maxlego08.bungeequeue.utils.Plugin {
 
 	private Gson gson;
-	private Persist persist;
+	protected Persist persist;
 	private Logger logger;
-	private List<Saveable> saveables = new ArrayList<Saveable>();
+	protected List<Saveable> saveables = new ArrayList<Saveable>();
 	private long enableTime;
 
 	protected void preEnable() {

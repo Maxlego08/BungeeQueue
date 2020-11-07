@@ -1,13 +1,15 @@
 package fr.maxlego08.bungeequeue.listener;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
 import fr.maxlego08.bungeequeue.BungeeQueue;
 import fr.maxlego08.bungeequeue.Config;
 import fr.maxlego08.bungeequeue.utils.Motd;
 import net.md_5.bungee.api.AbstractReconnectHandler;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.ServerPing.PlayerInfo;
 import net.md_5.bungee.api.ServerPing.Players;
@@ -18,6 +20,7 @@ import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
+import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.event.ServerKickEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
@@ -113,6 +116,37 @@ public class ServerListener implements Listener {
 	}
 
 	@EventHandler
+	public void onServerConnect(ServerConnectEvent event) {
+
+		if (Config.useSwitchServer && Config.defaultsSevers.contains(event.getTarget().getName())) {
+			ServerInfo server = findServer();
+			if (server != null)
+				event.setTarget(server);
+		}
+	}
+	
+	/**
+	 * Find server
+	 * @return {@link ServerInfo}
+	 */
+	private ServerInfo findServer() {
+		List<ServerInfo> servers = plugin.getProxy().getServersCopy().values().stream()
+				.filter(serv -> Config.defaultsSevers.contains(serv.getName())).collect(Collectors.toList());
+
+		Collections.sort(servers, Comparator.comparingInt(new ToIntFunction<ServerInfo>() {
+			@Override
+			public int applyAsInt(ServerInfo value) {
+				return value.getPlayers().size();
+			}
+		}));
+
+		if (servers.size() == 0)
+			return null;
+
+		return servers.get(0);
+	}
+
+	@EventHandler
 	public void onServerKickEvent(ServerKickEvent ev) {
 
 		if (!Config.useKickDefaultServer)
@@ -125,7 +159,13 @@ public class ServerListener implements Listener {
 			kickedFrom = this.plugin.getProxy().getReconnectHandler().getServer(ev.getPlayer());
 		else
 			kickedFrom = AbstractReconnectHandler.getForcedHost(ev.getPlayer().getPendingConnection());
-		ServerInfo kickTo = ProxyServer.getInstance().getServerInfo(Config.defaultKickServer);
+
+		if (kickedFrom != null) {
+			if (kickedFrom.getName().contains("lobby"))
+				return;
+		}
+
+		ServerInfo kickTo = findServer();
 		if (kickedFrom == null || (!kickedFrom.equals(kickTo))) {
 			ev.setCancelled(true);
 			ev.setCancelServer(kickTo);

@@ -24,6 +24,7 @@ public class QueueManager {
 	private final Deque<Player> queue = new LinkedList<>();
 	private boolean isRunning = false;
 	private final TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+	private ScheduledExecutorService ses;
 
 	public QueueManager(BungeeQueue plugin) {
 		super();
@@ -47,10 +48,9 @@ public class QueueManager {
 		if (isRunning)
 			return;
 
-		ScheduledExecutorService ses = Executors.newScheduledThreadPool(3);
-
 		isRunning = true;
 
+		ses = Executors.newScheduledThreadPool(3);
 		ses.scheduleAtFixedRate(() -> {
 
 			// On désactive la task
@@ -225,6 +225,16 @@ public class QueueManager {
 
 		}
 
+	}
+
+	/**
+	 * Restart queue
+	 */
+	public void restart() {
+		isRunning = false;
+		QueueManager manager = this;
+		ses.shutdown();
+		manager.run();
 	}
 
 }

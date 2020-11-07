@@ -8,6 +8,7 @@ import fr.maxlego08.bungeequeue.access.DefaultAccess;
 import fr.maxlego08.bungeequeue.access.JPremiumAccess;
 import fr.maxlego08.bungeequeue.command.CommandList;
 import fr.maxlego08.bungeequeue.command.CommandQueue;
+import fr.maxlego08.bungeequeue.command.CommandWhitelist;
 import fr.maxlego08.bungeequeue.listener.ServerListener;
 import fr.maxlego08.bungeequeue.utils.ZPlugin;
 import fr.maxlego08.bungeequeue.utils.enums.EnumPlugin;
@@ -33,6 +34,7 @@ public class BungeeQueue extends ZPlugin {
 		manager.run();
 
 		addCommand(new CommandQueue(this));
+		addCommand(new CommandWhitelist(this));
 		
 		addSave(new Config());
 		addListener(new ServerListener(this));
@@ -121,6 +123,10 @@ public class BungeeQueue extends ZPlugin {
 
 		}, Config.motdSpeedMaintenanceTask, Config.motdSpeedMaintenanceTask, TimeUnit.MILLISECONDS);
 
+	}
+	
+	public void save() {
+		saveables.forEach(save -> save.save(persist));
 	}
 
 }

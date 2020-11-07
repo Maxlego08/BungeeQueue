@@ -16,10 +16,12 @@ public class Config implements Saveable {
 	public static String targetServer = "faction";
 	public static List<String> defaultsSevers = Arrays.asList("lobby", "lobby1");
 	public static String channelName = "zQueue";
-	public static boolean useKickDefaultServer = false;
-	public static String defaultKickServer = "lobby";
+	public static boolean useKickDefaultServer = true;
 	public static boolean useCustomListCommand = false;
 	public static boolean useMotd = false;
+	public static boolean useQueueCommand = true;
+	public static boolean useSwitchServer = true;
+	
 	public static long motdSpeedMaintenanceTask = 10000;
 	public static String maintenanceServer = "lobby";
 	public static Motd motd = new Motd(
@@ -65,6 +67,8 @@ public class Config implements Saveable {
 	public static String queueJoinByPass = "§eUn joueur prioritaire vient de vous passer devant.";
 	public static String queueLeavePlayer = "§eUn joueur vient de déconnecter, vous êtes passez à  la position §6%s §esur §6%s§e.";
 	public static String queueBypass = "§eVous venez de rejoindre le serveur.";
+	public static String queueCommandDisable = "§eVous venez de rejoindre le serveur.";
+	public static String queueSpeedChange = "§fVous venez de changer la vitesse à §3%speed%§fms.";
 
 	public static TitleMessage downServer = new TitleMessage("§6Liste d'attente",
 			"§eLe serveur est actuellement indisponible");
